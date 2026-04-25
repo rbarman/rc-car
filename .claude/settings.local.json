@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/casa/projects/2026/rc-car/1_single_motor /Users/casa/projects/2026/rc-car/2_two_motors)",
+      "Bash(mv /Users/casa/projects/2026/rc-car/motor_test.py /Users/casa/projects/2026/rc-car/1_single_motor/motor_test.py)",
+      "Bash(mv /Users/casa/projects/2026/rc-car/images/single_motor_setup.jpg /Users/casa/projects/2026/rc-car/1_single_motor/single_motor_setup.jpg)"
+    ]
+  }
+}
