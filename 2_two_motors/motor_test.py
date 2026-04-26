@@ -1,32 +1,11 @@
 from gpiozero import OutputDevice
 from time import sleep
 
-IN1 = OutputDevice(17)
-IN2 = OutputDevice(27)
+# IN1 connected to GPIO 17 — both motors wired in parallel to OUT1/OUT2
+motor_pin = OutputDevice(17)
 
-def forward():
-    IN1.on()
-    IN2.off()
-
-def reverse():
-    IN1.off()
-    IN2.on()
-
-def stop():
-    IN1.off()
-    IN2.off()
-
-print("Forward...")
-forward()
+print("Motors spinning...")
+motor_pin.on()
 sleep(2)
-
-print("Stop...")
-stop()
-sleep(1)
-
-print("Reverse...")
-reverse()
-sleep(2)
-
-print("Stop.")
-stop()
+motor_pin.off()
+print("Motors stopped.")

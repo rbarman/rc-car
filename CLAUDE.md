@@ -31,7 +31,8 @@ Build a 4-wheel RC car controlled by a Raspberry Pi.
 | Folder | Goal | Status |
 |---|---|---|
 | `1_single_motor/` | One motor spinning via GPIO 17 | Done |
-| `2_two_motors/` | Two motors on one L298N, forward/reverse/stop | In progress |
+| `2_two_motors/` | Two motors wired in parallel to OUT1/OUT2, same on/off script | Done |
+| `3_forward_reverse_stop/` | Add IN2 (GPIO 27) for direction control — forward, reverse, stop | Not started |
 
 ## SSH Access
 ```
