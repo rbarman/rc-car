@@ -8,7 +8,7 @@ Build a 4-wheel RC car controlled by a Raspberry Pi.
 | Component | Details |
 |---|---|
 | Controller | Raspberry Pi 4 |
-| Motor drivers | 2x L298N (one per side) |
+| Motor drivers | 1x L298N (both sides, two channels) |
 | Motors | 4x TT motors (yellow, with wheels) |
 | Pi power | Wall outlet (USB) |
 | Motor power | External battery pack → L298N boards |
