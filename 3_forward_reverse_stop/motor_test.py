@@ -1,3 +1,4 @@
+import sys
 from gpiozero import OutputDevice
 from time import sleep
 
@@ -16,17 +17,14 @@ def stop():
     IN1.off()
     IN2.off()
 
-print("Forward...")
-forward()
+commands = {"f": forward, "r": reverse}
+
+if len(sys.argv) != 2 or sys.argv[1] not in commands:
+    print("Usage: python3 motor_test.py [f|r]")
+    sys.exit(1)
+
+commands[sys.argv[1]]()
+print(f"Motors: {'forward' if sys.argv[1] == 'f' else 'reverse'}")
 sleep(2)
-
-print("Stop...")
 stop()
-sleep(1)
-
-print("Reverse...")
-reverse()
-sleep(2)
-
-print("Stop.")
-stop()
+print("Motors: stop")
