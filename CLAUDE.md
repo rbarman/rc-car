@@ -10,7 +10,7 @@ Build a 4-wheel RC car controlled by a Raspberry Pi.
 | Controller | Raspberry Pi 4 |
 | Motor drivers | 1x L298N (both sides, two channels) |
 | Motors | 4x TT motors (yellow, with wheels) |
-| Pi power | Wall outlet (USB) |
+| Pi power | Portable phone charger (USB-C) — needs 5V/3A (15W) minimum |
 | Motor power | External battery pack → L298N boards |
 
 ## Wiring (GPIO → Driver)
@@ -35,6 +35,7 @@ Build a 4-wheel RC car controlled by a Raspberry Pi.
 | `2_two_motors/` | Two motors wired in parallel to OUT1/OUT2, same on/off script | Done |
 | `3_forward_reverse_stop/` | Add IN2 (GPIO 27) for direction control — forward, reverse, stop | Done |
 | `4_four_motors/` | Add right side motors via Channel B (GPIO 22, 23 → IN3, IN4) | Done |
+| `5_steering/` | Tank steering — forward, reverse, turn left/right, spin left/right | In progress |
 
 ## Pi GPIO Pinout (Raspberry Pi 4B rev 1.2)
 
