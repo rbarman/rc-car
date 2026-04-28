@@ -1,7 +1,7 @@
 ```mermaid
 graph TD
     PiPower[Pi USB Power] --> Pi
-    Batt[Battery Pack] -->|power| D1
+    Batt[Battery Pack] -->|+12V terminal| D1
     Batt -->|GND| GND_Bus[Common Ground Rail]
 
     subgraph Pi [Raspberry Pi 4]

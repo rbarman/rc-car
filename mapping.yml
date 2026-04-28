@@ -1,0 +1,23 @@
+channel_a:
+  in1:
+    gpio: 17
+    wire: blue
+  in2:
+    gpio: 27
+    wire: white
+  outputs: OUT1/OUT2
+  tires:
+    - UNKNOWN_TIRE_1  # will spin together with UNKNOWN_TIRE_2
+    - UNKNOWN_TIRE_2  # will spin together with UNKNOWN_TIRE_1
+
+channel_b:
+  in3:
+    gpio: 22
+    wire: green
+  in4:
+    gpio: 23
+    wire: yellow
+  outputs: OUT3/OUT4
+  tires:
+    - UNKNOWN_TIRE_3  # will spin together with UNKNOWN_TIRE_4
+    - UNKNOWN_TIRE_4  # will spin together with UNKNOWN_TIRE_3
