@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Car Controller</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #1a1a1a;
+            color: white;
+            font-family: sans-serif;
+            user-select: none;
+        }
+
+        h1 { margin-bottom: 2rem; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+        }
+
+        button {
+            background: #333;
+            color: white;
+            border: 2px solid #555;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+
+        button:active, button.active {
+            background: #0077ff;
+            border-color: #0055cc;
+        }
+
+        .stop-btn {
+            background: #550000;
+            border-color: #880000;
+        }
+
+        .stop-btn:active {
+            background: #cc0000;
+        }
+
+        #status {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <h1>RC Car</h1>
+
+    <div class="grid">
+        <button data-cmd="spin_left">↺</button>
+        <button data-cmd="forward">▲</button>
+        <button data-cmd="spin_right">↻</button>
+
+        <button data-cmd="turn_left">◄</button>
+        <button class="stop-btn" data-cmd="stop">■</button>
+        <button data-cmd="turn_right">►</button>
+
+        <button></button>
+        <button data-cmd="reverse">▼</button>
+        <button></button>
+    </div>
+
+    <div id="status">ready</div>
+
+    <script>
+        const status = document.getElementById('status');
+
+        document.querySelectorAll('button[data-cmd]').forEach(btn => {
+            const cmd = btn.dataset.cmd;
+
+            const send = () => {
+                fetch(`/command/${cmd}`)
+                    .then(r => r.json())
+                    .then(d => status.textContent = d.command.replace('_', ' '));
+            };
+
+            const sendStop = () => {
+                if (cmd === 'stop') return;
+                fetch('/command/stop')
+                    .then(() => status.textContent = 'stop');
+            };
+
+            btn.addEventListener('mousedown', send);
+            btn.addEventListener('touchstart', e => { e.preventDefault(); send(); });
+            btn.addEventListener('mouseup', sendStop);
+            btn.addEventListener('mouseleave', sendStop);
+            btn.addEventListener('touchend', sendStop);
+        });
+    </script>
+</body>
+</html>
