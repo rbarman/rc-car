@@ -34,7 +34,7 @@ Build a 4-wheel RC car controlled by a Raspberry Pi.
 | `1_single_motor/` | One motor spinning via GPIO 17 | Done |
 | `2_two_motors/` | Two motors wired in parallel to OUT1/OUT2, same on/off script | Done |
 | `3_forward_reverse_stop/` | Add IN2 (GPIO 27) for direction control — forward, reverse, stop | Done |
-| `4_four_motors/` | Add right side motors via Channel B (GPIO 22, 23 → IN3, IN4) | In progress |
+| `4_four_motors/` | Add right side motors via Channel B (GPIO 22, 23 → IN3, IN4) | Done |
 
 ## Pi GPIO Pinout (Raspberry Pi 4B rev 1.2)
 

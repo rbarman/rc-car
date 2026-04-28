@@ -1,43 +1,34 @@
 ```mermaid
 graph TD
-    %% Power System
     PiPower[Pi USB Power] --> Pi
-    Batt[Battery Pack] -->|power| D1
+    Batt[Battery Pack] -->|+12V terminal| D1
     Batt -->|GND| GND_Bus[Common Ground Rail]
 
-    %% Ground Bridge
-    Pi -->|GND Pin 9| GND_Bus
-    GND_Bus -->|GND| D1
-
-    %% Controllers
     subgraph Pi [Raspberry Pi 4]
-        GPIO17[GPIO 17 - IN1]
-        GPIO27[GPIO 27 - IN2]
-        GPIO22[GPIO 22 - IN3]
-        GPIO23[GPIO 23 - IN4]
+        GPIO17[GPIO 17 - blue wire]
+        GPIO27[GPIO 27 - white wire]
+        GPIO22[GPIO 22 - green wire]
+        GPIO23[GPIO 23 - yellow wire]
+        PiGND[GND - Pin 9]
     end
 
-    %% Single L298N Driver
+    PiGND --> GND_Bus
+    GND_Bus -->|GND| D1
+
     subgraph D1 [L298N Driver]
         IN1[IN1]
         IN2[IN2]
         IN3[IN3]
         IN4[IN4]
-        OUT_A[OUT1/OUT2 - Channel A]
-        OUT_B[OUT3/OUT4 - Channel B]
+        OUT_A[OUT1/OUT2 - Channel A - RIGHT side]
+        OUT_B[OUT3/OUT4 - Channel B - LEFT side]
     end
 
-    %% Motor Connections
-    M_Left[Front-Left & Back-Left Motors]
-    M_Right[Front-Right & Back-Right Motors]
-
-    %% Signal Links
     GPIO17 --> IN1
     GPIO27 --> IN2
     GPIO22 --> IN3
     GPIO23 --> IN4
 
-    %% Motor Power Links
-    OUT_A --> M_Left
-    OUT_B --> M_Right
+    OUT_A --> MR[Right Motors x2 - FRONT_RIGHT & BACK_RIGHT]
+    OUT_B --> ML[Left Motors x2 - FRONT_LEFT & BACK_LEFT]
 ```
