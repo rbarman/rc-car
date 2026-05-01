@@ -65,6 +65,26 @@ GPIO26 (37)  (38) GPIO20
 
 Pi is a **Raspberry Pi 4B rev 1.2**, BCM2711 SoC, 4GB RAM.
 
+## Web Controller
+
+The Flask web controller auto-starts on boot via systemd. Access it at `http://rc-car.local:5000` from any device on the same network.
+
+Useful commands:
+```bash
+sudo systemctl status rc-car    # check if running
+sudo systemctl restart rc-car   # restart after code changes
+sudo systemctl stop rc-car      # stop the service
+sudo systemctl disable rc-car   # disable autostart
+```
+
+To install/reinstall the service:
+```bash
+sudo cp rc-car.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable rc-car
+sudo systemctl start rc-car
+```
+
 ## SSH Access
 ```
 ssh driver@rc-car.local
