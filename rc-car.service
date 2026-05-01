@@ -1,0 +1,12 @@
+[Unit]
+Description=RC Car Web Controller
+After=network.target
+
+[Service]
+User=driver
+WorkingDirectory=/home/driver/rc-car
+ExecStart=/usr/bin/python /home/driver/rc-car/controller/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
