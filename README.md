@@ -2,9 +2,18 @@
 
 A 4-wheel RC car controlled via a web browser, built with a Raspberry Pi 4 and L298N motor driver.
 
+<video src="milestones/6_controller/test_drive.mp4" controls width="600"></video>
+
+## Pi Setup
+
+- **Model:** Raspberry Pi 4B
+- **OS:** Raspberry Pi OS Lite
+- **Hostname:** `rc-car`
+- **User:** `driver`
+
 ## Starting the Car
 
-1. Connect the **motor battery pack** to the L298N (+12V terminal)
+1. Connect and turn on the **motor battery pack** to the L298N (+12V terminal)
 2. Connect the **phone charger** to the Raspberry Pi (USB-C)
 3. Wait ~30 seconds for the Pi to boot and the web controller to start automatically
 
