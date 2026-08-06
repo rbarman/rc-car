@@ -1,7 +1,7 @@
 # RC Car Project
 
 ## Goal
-Build a 4-wheel RC car controlled by a Raspberry Pi.
+Build a 4-wheel RC car controlled by a Raspberry Pi, capable of driving onto the patio and spot-spraying vinegar on weeds growing between the bricks.
 
 ## Hardware
 
@@ -37,6 +37,31 @@ Build a 4-wheel RC car controlled by a Raspberry Pi.
 | `4_four_motors/` | Add right side motors via Channel B (GPIO 22, 23 → IN3, IN4) | Done |
 | `5_steering/` | Tank steering — forward, reverse, turn left/right, spin left/right | Done |
 | `6_web_controller/` | Flask web server with button UI to drive from phone/browser | Done |
+| `7_vinegar_sprayer/` | Add a 12V diaphragm pump + relay + nozzle to spray vinegar on command, controlled via a "Spray" button in the web controller | Planning |
+
+## Vinegar Sprayer (Milestone 7 — planning)
+
+**Goal:** Drive onto the patio and spot-spray vinegar on weeds growing between bricks. Manual trigger only for now — autonomous weed detection is a future phase (see `BACKLOG.md`).
+
+**Parts (not yet purchased):**
+
+| Part | Spec |
+|---|---|
+| Pump | 12V micro diaphragm pump, self-priming (e.g. "R385"/"365"-style) |
+| Nozzle | Small fan/mist spray nozzle |
+| Reservoir | 250-500mL bottle |
+| Tubing | Vinegar-safe silicone or PVC, sized to pump's barb fitting |
+| Relay | Single-channel 5V logic relay module |
+
+**Wiring plan:**
+- GPIO 24 → relay signal input (free pin, no conflict with motor GPIOs 17/27/22/23)
+- Relay switches the pump off the existing motor battery pack (shared power, no separate battery needed): GPIO HIGH = pump on, GPIO LOW = pump off
+- Ground is already shared via the existing motor battery/Pi ground rail
+- Pump, reservoir, and tubing mounted and routed away from the Pi/L298N to keep drips off the electronics
+- If testing shows voltage sag/motor stutter when the pump kicks on, split the pump onto its own separate battery
+
+**Software plan:**
+- Add a "Spray" button to the web controller (`controller/app.py`), same hold-to-activate pattern as the existing drive buttons
 
 ## Pi GPIO Pinout (Raspberry Pi 4B rev 1.2)
 
@@ -91,6 +116,10 @@ ssh driver@rc-car.local
 ```
 
 > **Tip:** Run `pinout` while SSH'd into the Pi to see a visual layout of the GPIO pins.
+
+## Troubleshooting
+
+See README.md's Troubleshooting section for: connection issues, verifying battery pack polarity (red → +12V, black → GND — never both to +12V), using `pin_test.py` to validate motor/GPIO wiring, and fixing `lgpio.error: 'GPIO busy'` (stop the `rc-car` service first, since it holds the motor GPIO pins).
 
 ## Images
 - `1_single_motor/single_motor_setup.jpg` — initial single-motor bench setup

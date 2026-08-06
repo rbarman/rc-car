@@ -36,6 +36,23 @@ A 4-wheel RC car controlled via a web browser, built with a Raspberry Pi 4 and L
 **Motors not responding**
 - Check the motor battery pack is on and connected to the +12V terminal on the L298N
 - Check the Pi is powered (should have a solid red LED)
+- Verify battery pack polarity: **red wire → +12V terminal**, **black wire → GND terminal** on the L298N (not both to +12V — that shorts the battery pack across its own terminals)
+- Quick power checks: the **L298N has an onboard red power LED** that lights up when it's properly wired to the battery pack — if it's dark, recheck the battery connection/polarity before going further. The **Pi shows a solid red LED** once it has power (a blinking/no green LED separately indicates SD card activity/boot issues, but red = power is present)
+
+**Validating motor wiring (which pin drives which wheel)**
+1. Prop the car up so all wheels spin freely — don't let it drive off the table
+2. SSH in and stop the web controller first, since it holds the same GPIO pins: `sudo systemctl stop rc-car`
+3. Run the pin tester: `python3 pin_test.py`
+4. Activate pins `1`-`4` one at a time and confirm:
+   - `1`/`2` (GPIO 17/27) spin **both left motors** (front-left + back-left), opposite directions from each other
+   - `3`/`4` (GPIO 22/23) spin **both right motors**, opposite directions from each other
+5. `0` stops all pins, `q` quits
+6. Restart the web controller when done: `sudo systemctl start rc-car`
+
+**`lgpio.error: 'GPIO busy'` when running a test script**
+- The `rc-car` systemd service is already running and holds the motor GPIO pins
+- Stop it first: `sudo systemctl stop rc-car`, then re-run the script
+- Restart it afterward: `sudo systemctl start rc-car`
 
 ## SSH Access
 ```
