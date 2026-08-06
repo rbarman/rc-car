@@ -1,22 +1,27 @@
 ```mermaid
 graph TD
     subgraph Pi [Raspberry Pi 4]
-        FiveV[5V - Pin 2 or 4]
-        PiGND[GND - Pin 20]
+        FiveV[5V - Pin 4]
+        PiGND[GND - Pin 6]
         GPIO24[GPIO 24 - Pin 18]
     end
 
-    FiveV -->|VCC| Relay
-    PiGND -->|GND| Relay
-    GPIO24 -->|IN signal| Relay
+    FiveV -->|"Purple wire"| DCplus
+    PiGND -->|"Orange wire"| DCminus
+    GPIO24 -->|"Brown wire"| IN
 
     subgraph Relay [5V Relay Module]
-        VCC
-        GND
-        IN
+        DCplus[DC+]
+        DCminus[DC-]
+        IN[IN]
         COM[COM - not wired yet]
         NO[NO - not wired yet]
+        NC[NC - not wired yet]
     end
+
+    linkStyle 0 stroke:#a855f7,stroke-width:3px
+    linkStyle 1 stroke:#f97316,stroke-width:3px
+    linkStyle 2 stroke:#78350f,stroke-width:3px
 ```
 
 ## Notes
