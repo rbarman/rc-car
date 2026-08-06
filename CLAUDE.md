@@ -37,7 +37,7 @@ Build a 4-wheel RC car controlled by a Raspberry Pi, capable of driving onto the
 | `4_four_motors/` | Add right side motors via Channel B (GPIO 22, 23 → IN3, IN4) | Done |
 | `5_steering/` | Tank steering — forward, reverse, turn left/right, spin left/right | Done |
 | `6_web_controller/` | Flask web server with button UI to drive from phone/browser | Done |
-| `7_vinegar_sprayer/` | Add a 12V diaphragm pump + relay + nozzle to spray vinegar on command, controlled via a "Spray" button in the web controller | Planning |
+| `7_vinegar_sprayer/` | Add a 12V diaphragm pump + relay + nozzle to spray vinegar on command, controlled via a "Spray" button in the web controller | In progress |
 
 ## Vinegar Sprayer (Milestone 7 — planning)
 
