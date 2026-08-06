@@ -55,10 +55,9 @@ Build a 4-wheel RC car controlled by a Raspberry Pi, capable of driving onto the
 
 **Wiring plan:**
 - GPIO 24 → relay signal input (free pin, no conflict with motor GPIOs 17/27/22/23)
-- Relay switches the pump off the existing motor battery pack (shared power, no separate battery needed): GPIO HIGH = pump on, GPIO LOW = pump off
-- Ground is already shared via the existing motor battery/Pi ground rail
+- Relay control side (`DC+`/`DC-`/`IN`) powered from the Pi: `DC+` → Pin 4 (5V), `DC-` → Pin 6 (GND), `IN` → Pin 18 (GPIO 24). GPIO HIGH = pump on, GPIO LOW = pump off
+- Pump runs on its **own dedicated battery pack** (same voltage as the motor pack), switched by the relay's `COM`/`NO` contacts — this relay is opto-isolated, so the switching side has no electrical connection back to the Pi or the motor battery/L298N, avoiding any voltage sag on the motors when the pump kicks on
 - Pump, reservoir, and tubing mounted and routed away from the Pi/L298N to keep drips off the electronics
-- If testing shows voltage sag/motor stutter when the pump kicks on, split the pump onto its own separate battery
 
 **Software plan:**
 - Add a "Spray" button to the web controller (`controller/app.py`), same hold-to-activate pattern as the existing drive buttons
