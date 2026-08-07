@@ -10,7 +10,7 @@ input("Press Enter when ready...")
 
 print("Pump ON")
 pump_relay.on()
-sleep(3)
+sleep(15)
 
 print("Pump OFF")
 pump_relay.off()

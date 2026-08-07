@@ -61,7 +61,7 @@ Try **male-to-male jumper wires** first — the motor tabs on the TT motors turn
 
 It's a friction contact either way, so give it a gentle tug to confirm it's not going to slip off, and a small wrap of tape over the joint doesn't hurt for extra security during testing. If male-to-male still doesn't hold well, alligator clip test leads (~$5, no tools) are the more secure fallback. Good enough for this bench test either way; we'll revisit a more permanent connection when mounting the pump on the chassis in step 4.
 
-Also check the pump body for a tiny embossed arrow near each barbed port — that indicates which one is intake vs. outlet. If there's no visible marking, connect one to the water cup and one to the outlet as a first guess; if nothing comes out when running, swap them.
+No embossed arrow was found on this pump body, so intake/outlet was determined by testing: the **right-hand port (as pictured, closer to the motor's power tabs) is the intake**, the **left-hand port is the outlet** — confirmed by submerging each side and watching which one bubbles air out under power. Keep this orientation for the nozzle test and final mounting.
 
 ## Wire colors used
 | Wire color | From | To |
@@ -84,3 +84,7 @@ Trade-off: this removes the electrical isolation the dedicated-battery approach 
 - **Never run the pump dry for more than a couple seconds** — a diaphragm pump needs liquid to lubricate and seal itself; running dry can damage it. Have the intake tubing sitting in a cup of water *before* you run the test script.
 - Point the pump's outlet (no nozzle yet — just the bare barb fitting or a short piece of tubing) into a bowl or sink so the test water goes somewhere sensible.
 - Keep the pump and any drips away from the Pi and L298N.
+
+## Troubleshooting notes (from bench testing)
+- **Water rises partway then falls back when the pump stops:** usually means the pump never built a fully continuous stream — check for (1) tubing not fully seated on the barb, leaving exposed ridges that leak air, and (2) too little water in the intake container, letting the tube gulp air. Both break suction the same way. Filling the intake bowl with more water resolved this in testing.
+- **Confirmed working setup:** right port = intake (submerged in water), left port = outlet (into catch bowl), 15-second run time in `pump_test.py`.

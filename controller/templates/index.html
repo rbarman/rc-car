@@ -51,6 +51,16 @@
             background: #cc0000;
         }
 
+        .spray-btn {
+            background: #004d33;
+            border-color: #007a52;
+        }
+
+        .spray-btn:active, .spray-btn.active {
+            background: #00cc88;
+            border-color: #00a86e;
+        }
+
         #status {
             margin-top: 1.5rem;
             font-size: 1rem;
@@ -70,7 +80,7 @@
         <button class="stop-btn" data-cmd="stop">■</button>
         <button data-cmd="turn_right">►</button>
 
-        <button></button>
+        <button class="spray-btn" data-cmd="spray_on" data-release="spray_off">💧</button>
         <button data-cmd="reverse">▼</button>
         <button></button>
     </div>
@@ -82,6 +92,7 @@
 
         document.querySelectorAll('button[data-cmd]').forEach(btn => {
             const cmd = btn.dataset.cmd;
+            const releaseCmd = btn.dataset.release || 'stop';
 
             const send = () => {
                 fetch(`/command/${cmd}`)
@@ -89,17 +100,17 @@
                     .then(d => status.textContent = d.command.replace('_', ' '));
             };
 
-            const sendStop = () => {
-                if (cmd === 'stop') return;
-                fetch('/command/stop')
-                    .then(() => status.textContent = 'stop');
+            const release = () => {
+                if (cmd === releaseCmd) return;
+                fetch(`/command/${releaseCmd}`)
+                    .then(() => status.textContent = releaseCmd.replace('_', ' '));
             };
 
             btn.addEventListener('mousedown', send);
             btn.addEventListener('touchstart', e => { e.preventDefault(); send(); });
-            btn.addEventListener('mouseup', sendStop);
-            btn.addEventListener('mouseleave', sendStop);
-            btn.addEventListener('touchend', sendStop);
+            btn.addEventListener('mouseup', release);
+            btn.addEventListener('mouseleave', release);
+            btn.addEventListener('touchend', release);
         });
     </script>
 </body>

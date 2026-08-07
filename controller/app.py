@@ -3,6 +3,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import drive
+import sprayer
 
 app = Flask(__name__)
 
@@ -20,6 +21,8 @@ def command(cmd):
         'spin_left':  drive.spin_left,
         'spin_right': drive.spin_right,
         'stop':       drive.stop,
+        'spray_on':   sprayer.spray_on,
+        'spray_off':  sprayer.spray_off,
     }
     if cmd not in commands:
         return jsonify({'error': 'unknown command'}), 400

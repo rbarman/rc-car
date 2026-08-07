@@ -33,8 +33,8 @@ Considered a diaphragm pump, a peristaltic pump, and a servo-actuated trigger sp
 Going one new piece of hardware at a time, same style as milestones 1-5.
 
 1. [`1_relay_test/`](1_relay_test/) — wire just the relay to the Pi (no pump/water), confirm GPIO 24 clicks it on/off — done
-2. [`2_pump_test/`](2_pump_test/) — wire the pump through the relay off the battery pack, prime from a cup of water, confirm it pumps on command — **current step**
-3. `3_nozzle_test/` — attach tubing + nozzle, check spray pattern over a sink/bucket
-4. `4_mounting/` — mount pump/reservoir/tubing on the chassis, routed away from the Pi and L298N
-5. `5_web_integration/` — add a "Spray" button to `controller/app.py`, same hold-to-activate pattern as the drive buttons
+2. [`2_pump_test/`](2_pump_test/) — wire the pump through the relay off the battery pack, prime from a cup of water, confirm it pumps on command — done
+3. `3_nozzle_test/` — attach tubing + nozzle, check spray pattern over a sink/bucket — skipped for now
+4. `4_mounting/` — mount pump/reservoir/tubing on the chassis, routed away from the Pi and L298N — **current step**
+5. Web integration — done: added `sprayer.py` (GPIO 24 relay control) and a "Spray" button to `controller/app.py` / `controller/templates/index.html`, same hold-to-activate pattern as the drive buttons
 6. `6_field_test/` — test on the patio
